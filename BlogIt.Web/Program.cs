@@ -1,7 +1,15 @@
+using BlogIt.Web.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Dependency injection into the SQL database
+builder.Services.AddDbContext<BlogItDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("BloggItDbConnectionString"))
+);
 
 var app = builder.Build();
 
