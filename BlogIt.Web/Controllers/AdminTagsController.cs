@@ -2,20 +2,23 @@
 using BlogIt.Web.Data;
 using BlogIt.Web.Models.Domain;
 using BlogIt.Web.Models.ViewModels;
+using BlogIt.Web.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace BlogIt.Web.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    // Added a Tag repository to handle the async functional calls to simplify bussiness logic
     public class AdminTagsController : Controller
     {
-        private readonly BlogItDbContext blogItDbContext;
 
-        public AdminTagsController(BlogItDbContext blogItDbContext)
+        private readonly ITagRepository tagRepository;
+
+        public AdminTagsController(ITagRepository tagRepository)
         {
-            this.blogItDbContext = blogItDbContext;
+            this.tagRepository = tagRepository;
         }
 
         [HttpGet]
@@ -26,43 +29,50 @@ namespace BlogIt.Web.Controllers
 
         [HttpPost]
         [ActionName("Add")]
-        public IActionResult Add(AddTagRequest addTagRequest)
+        public async Task<IActionResult> Add(AddTagRequest addTagRequest)
         {
-            // Map AddTagRequest to  Tag domain Model
+            ValidateAddTagRequest(addTagRequest);
+
+            if (ModelState.IsValid == false)
+            {
+                return View();
+            }
+
+            // Mapping AddTagRequest to Tag domain model
             var tag = new Tag
             {
                 Name = addTagRequest.Name,
-                DisplayName = addTagRequest.DisplayName,
+                DisplayName = addTagRequest.DisplayName
             };
 
-            blogItDbContext.Tags.Add(tag);
-            blogItDbContext.SaveChanges();
+            await tagRepository.AddAsync(tag);
 
             return RedirectToAction("ListAll");
         }
 
         [HttpGet]
         [ActionName("ListAll")]
-        public IActionResult ListAll()
+        public async Task<IActionResult> ListAll()
         {
             // use dbContext to read the tags
-            var tags = blogItDbContext.Tags.ToList();
+            var tags = await tagRepository.GetAllAsync();
 
             return View(tags);
         }
 
         [HttpGet]
-        public IActionResult Edit(Guid id)
+        [ActionName("Edit")]
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var tag = blogItDbContext.Tags.FirstOrDefault(x => x.Id == id);
+            var existingTag = await tagRepository.GetAsync(id);
 
-            if (tag != null)
+            if (existingTag != null)
             {
                 var editTagRequest = new EditTagRequest
                 {
-                    Id = tag.Id,
-                    Name = tag.Name,
-                    DisplayName = tag.DisplayName
+                    Id = existingTag.Id,
+                    Name = existingTag.Name,
+                    DisplayName = existingTag.DisplayName
                 };
 
                 return View(editTagRequest);
@@ -72,7 +82,8 @@ namespace BlogIt.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(EditTagRequest editTagRequest)
+        [ActionName("Edit")]
+        public async Task<IActionResult> Edit(EditTagRequest editTagRequest)
         {
             var tag = new Tag
             {
@@ -81,35 +92,41 @@ namespace BlogIt.Web.Controllers
                 DisplayName = editTagRequest.DisplayName
             };
 
-            var existingTag = blogItDbContext.Tags.Find(tag.Id);
+            var existingTag = await tagRepository.UpdateAsync(tag);
 
             if (existingTag != null)
             {
-                existingTag.Name = tag.Name;
-                existingTag.DisplayName = tag.DisplayName;
-                // Save Changes
-                blogItDbContext.SaveChanges();
                 return RedirectToAction("ListAll");
             }
 
             return RedirectToAction("Edit", new { id = editTagRequest.Id });
         }
 
-
         [HttpPost]
-        public IActionResult Delete(EditTagRequest editTagRequest)
+        public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
         {
-            var existingTag = blogItDbContext.Tags.Find(editTagRequest.Id);
+            var deletedTag = await tagRepository.DeleteAsync(editTagRequest.Id);
 
-            if (existingTag != null)
+            if (deletedTag != null)
             {
-                blogItDbContext.Tags.Remove(existingTag);
-                blogItDbContext.SaveChanges();
+                // Show an success notification
                 return RedirectToAction("ListAll");
             }
 
             // Show an error notification
             return RedirectToAction("Edit", new { id = editTagRequest.Id });
         }
+        private void ValidateAddTagRequest(AddTagRequest request)
+        {
+            if (request.Name is not null && request.DisplayName is not null)
+            {
+                if (request.Name == request.DisplayName)
+                {
+                    ModelState.AddModelError("DisplayName", "Name cannot be the same as DisplayName");
+                }
+            }
+        }
+
     }
+
 }

@@ -1,4 +1,5 @@
 using BlogIt.Web.Data;
+using BlogIt.Web.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BlogItDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BloggItDbConnectionString"))
 );
+
+// Give the Tag Repository class object instead of the using just the Interface
+builder.Services.AddScoped<ITagRepository, TagRepository>();
 
 var app = builder.Build();
 
