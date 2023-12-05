@@ -4,6 +4,7 @@ using BlogIt.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogIt.Web.Migrations
 {
     [DbContext(typeof(BlogItDbContext))]
-    partial class BlogItDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231205215848_Migrate Add Tags to BlogPost Model")]
+    partial class MigrateAddTagstoBlogPostModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -14,6 +14,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("BloggItDbConnect
 
 // Give the Tag Repository class object instead of the using just the Interface
 builder.Services.AddScoped<ITagRepository, TagRepository>();
+// Give the Tag Repository class object instead of the using just the Interface
+builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
 var app = builder.Build();
 

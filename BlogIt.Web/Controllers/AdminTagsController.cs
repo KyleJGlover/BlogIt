@@ -103,6 +103,7 @@ namespace BlogIt.Web.Controllers
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
         {
             var deletedTag = await tagRepository.DeleteAsync(editTagRequest.Id);
