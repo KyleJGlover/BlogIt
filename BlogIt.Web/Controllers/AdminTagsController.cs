@@ -1,12 +1,7 @@
-﻿using Azure;
-using BlogIt.Web.Data;
-using BlogIt.Web.Models.Domain;
+﻿using BlogIt.Web.Models.Domain;
 using BlogIt.Web.Models.ViewModels;
 using BlogIt.Web.Repositories;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace BlogIt.Web.Controllers
 {

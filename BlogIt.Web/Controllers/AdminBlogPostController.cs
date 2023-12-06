@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BlogIt.Web.Controllers
-{    
+{
     // Added a Blog repository to handle the async functional calls to simplify bussiness logic
     public class AdminBlogPostController : Controller
     {
