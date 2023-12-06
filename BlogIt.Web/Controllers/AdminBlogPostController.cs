@@ -1,12 +1,14 @@
 ﻿using BlogIt.Web.Models.Domain;
 using BlogIt.Web.Models.ViewModels;
 using BlogIt.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BlogIt.Web.Controllers
 {
     // Added a Blog repository to handle the async functional calls to simplify bussiness logic
+    [Authorize(Roles = "Admin")]
     public class AdminBlogPostController : Controller
     {
         private readonly ITagRepository tagRepository;
