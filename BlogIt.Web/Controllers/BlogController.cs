@@ -8,25 +8,24 @@ namespace BlogIt.Web.Controllers
 {
     public class BlogController : Controller
     {
-
         private readonly IBlogPostRepository blogPostRepository;
         private readonly IBlogPostLikeRepository blogPostLikeRepository;
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
         private readonly IBlogPostCommentRepository blogPostCommentRepository;
 
-        /*        public BlogController(IBlogPostRepository blogPostRepository,
-                    IBlogPostLikeRepository blogPostLikeRepository,
-                    SignInManager<IdentityUser> signInManager,
-                    UserManager<IdentityUser> userManager,
-                    IBlogPostCommentRepository blogPostCommentRepository)
-                {
-                    this.blogPostRepository = blogPostRepository;
-                    this.blogPostLikeRepository = blogPostLikeRepository;
-                    this.signInManager = signInManager;
-                    this.userManager = userManager;
-                    this.blogPostCommentRepository = blogPostCommentRepository;
-                }*/
+        public BlogController(IBlogPostRepository blogPostRepository,
+            IBlogPostLikeRepository blogPostLikeRepository,
+            SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            IBlogPostCommentRepository blogPostCommentRepository)
+        {
+            this.blogPostRepository = blogPostRepository;
+            this.blogPostLikeRepository = blogPostLikeRepository;
+            this.signInManager = signInManager;
+            this.userManager = userManager;
+            this.blogPostCommentRepository = blogPostCommentRepository;
+        }
 
 
         [HttpGet]
@@ -109,7 +108,7 @@ namespace BlogIt.Web.Controllers
                 };
 
                 await blogPostCommentRepository.AddAsync(domainModel);
-                return RedirectToAction("Index", "Blogs",
+                return RedirectToAction("Index", "Blog",
                     new { urlHandle = blogDetailsViewModel.UrlHandle });
             }
 

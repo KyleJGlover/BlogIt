@@ -33,8 +33,16 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 // Give the Tag Repository class object instead of the using just the Interface
 builder.Services.AddScoped<ITagRepository, TagRepository>();
+
+// Give the Blog Post Comment Repository class object instead of the using just the Interface
+builder.Services.AddScoped<IBlogPostCommentRepository, BlogPostCommentRepository>();
+
+// Give the Blog Post Like Repository class object instead of the using just the Interface
+builder.Services.AddScoped<IBlogPostLikeRepository, BlogPostLikeRepository>();
+
 // Give the Blog Post Repository class object instead of the using just the Interface
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+
 // Give the Image Repository class object instead of the using just the Interface
 builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();
 

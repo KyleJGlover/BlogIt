@@ -2,7 +2,7 @@
 
 namespace BlogIt.Web.Repositories
 {
-    internal interface IBlogPostLikeRepository
+    public interface IBlogPostLikeRepository
     {
         Task<int> GetTotalLikes(Guid blogPostId);
 
