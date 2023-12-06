@@ -4,6 +4,7 @@ using BlogIt.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogIt.Web.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206194949_Add new super user")]
+    partial class Addnewsuperuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,15 +169,15 @@ namespace BlogIt.Web.Migrations.AuthDb
                         {
                             Id = "7fb4a9ef-85de-4fbc-bf7b-763dd90e08e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "76b1d612-71df-4057-acec-e18e9e09478f",
+                            ConcurrencyStamp = "32af0be9-4a37-4260-acce-02654308c4a2",
                             Email = "superadmin@BlogIt.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@BLOGIT.COM",
                             NormalizedUserName = "SUPERADMIN@BLOGIT.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL7j6+L7jQfFnmUD+++OGkAWqN9MSiQp0B0Xp+kVeDRT61U7g9QolWEEjFBBvmletw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG48UNE8XZY2LmyAGDiKtSwmWvcAzJUq/oUwy07Hpop6AFPZGpAwo1XDi8NKfu+UXg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "51fd5b1b-032b-4b45-a280-6d9d7417d75e",
+                            SecurityStamp = "140aa8b4-42f3-4dbb-b75d-2bd418a39f3c",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@BlogIt.com"
                         });

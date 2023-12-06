@@ -19,6 +19,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("BlogItAuthDbConn
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>();
+
 // Limit the checks for the Password for the Identity object
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -29,6 +30,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequiredLength = 5;
     options.Password.RequiredUniqueChars = 1;
+    // Add spaces as acceptable characters in user names
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
 });
 
 // Give the Tag Repository class object instead of the using just the Interface
@@ -45,6 +48,9 @@ builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
 // Give the Image Repository class object instead of the using just the Interface
 builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();
+
+// Give the User Repository class object instead of the using just the Interface
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 

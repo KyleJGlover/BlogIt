@@ -10,11 +10,15 @@ namespace BlogIt.Web.Repositories
 
         public CloudinaryImageRepository(IConfiguration configuration)
         {
+            // had to remove way done during development
+            var config = new ConfigurationBuilder()
+                .AddUserSecrets<Program>()
+                .Build();
             this.configuration = configuration;
             account = new Account(
-                configuration.GetSection("Cloudinary")["CloudName"],
-                configuration.GetSection("Cloudinary")["ApiKey"],
-                configuration.GetSection("Cloudinary")["ApiSecret"]);
+                config["CloudName"],
+                config["ApiKey"],
+                config["ApiSecret"]);
         }
 
         public async Task<string?> UploadAsync(IFormFile file)

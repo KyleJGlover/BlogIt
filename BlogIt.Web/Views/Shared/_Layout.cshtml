@@ -21,7 +21,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar navbar-dark bg-dark border-bottom box-shadow">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BlogIt.Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BlogIt</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -38,6 +38,7 @@
                                     Admin
                                 </a>
                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="AdminUser" asp-action="ListAll">List All Users</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="AdminTags" asp-action="Add">Add Tags</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="AdminTags" asp-action="ListAll">List All Tags</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="AdminBlogPost" asp-action="Add">Add Blog Post</a>

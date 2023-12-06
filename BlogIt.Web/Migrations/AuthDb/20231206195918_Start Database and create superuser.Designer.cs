@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogIt.Web.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20231206042512_Create AuthDb")]
-    partial class CreateAuthDb
+    [Migration("20231206195918_Start Database and create superuser")]
+    partial class StartDatabaseandcreatesuperuser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,17 +169,17 @@ namespace BlogIt.Web.Migrations.AuthDb
                         {
                             Id = "7fb4a9ef-85de-4fbc-bf7b-763dd90e08e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1d9354b-a065-462a-aeb7-37c15215886a",
-                            Email = "superadmin@bloggie.com",
+                            ConcurrencyStamp = "76b1d612-71df-4057-acec-e18e9e09478f",
+                            Email = "superadmin@BlogIt.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "SUPERADMIN@BLOGGIE.COM",
-                            NormalizedUserName = "SUPERADMIN@BLOGGIE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHQXncDsIF/7lLX5UF8t7s51yGKcg/SBwchQZYGYEmlNhxQaAjjnAvUyI0QNlk5bUA==",
+                            NormalizedEmail = "SUPERADMIN@BLOGIT.COM",
+                            NormalizedUserName = "SUPERADMIN@BLOGIT.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL7j6+L7jQfFnmUD+++OGkAWqN9MSiQp0B0Xp+kVeDRT61U7g9QolWEEjFBBvmletw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "64445c81-db85-45e1-8025-c0b381a3081b",
+                            SecurityStamp = "51fd5b1b-032b-4b45-a280-6d9d7417d75e",
                             TwoFactorEnabled = false,
-                            UserName = "superadmin@bloggie.com"
+                            UserName = "superadmin@BlogIt.com"
                         });
                 });
 

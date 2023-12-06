@@ -52,10 +52,10 @@ namespace BlogIt.Web.Data
             var superAdminId = "7fb4a9ef-85de-4fbc-bf7b-763dd90e08e5";
             var superAdminUser = new IdentityUser
             {
-                UserName = "superadmin@bloggie.com",
-                Email = "superadmin@bloggie.com",
-                NormalizedEmail = "superadmin@bloggie.com".ToUpper(),
-                NormalizedUserName = "superadmin@bloggie.com".ToUpper(),
+                UserName = "superadmin@BlogIt.com",
+                Email = "superadmin@BlogIt.com",
+                NormalizedEmail = "superadmin@BlogIt.com".ToUpper(),
+                NormalizedUserName = "superadmin@BlogIt.com".ToUpper(),
                 Id = superAdminId
             };
 
