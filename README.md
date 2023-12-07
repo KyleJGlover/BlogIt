@@ -44,6 +44,6 @@ Through Microsoft Identity, the blogging project not only fortifies its security
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 ## Screenshot
 
-![App Screenshot](https://raw.githubusercontent.com/KyleJGlover/plantings_production/dev2/Plantings-Main.png](https://res.cloudinary.com/dcfhd6pgg/image/upload/v1701907419/Hero_kn1gcs.png)https://res.cloudinary.com/dcfhd6pgg/image/upload/v1701907419/Hero_kn1gcs.png)
+![App Screenshot](https://res.cloudinary.com/dcfhd6pgg/image/upload/v1701907419/Hero_kn1gcs.png)
 
   
