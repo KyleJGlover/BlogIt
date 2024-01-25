@@ -15,7 +15,6 @@ Through Microsoft Identity, the blogging project not only fortifies its security
 - The frontend used ASP.Net MVC Framework
 - Dependency Injection Used In ASP NET Core
 - Applied Entity Framework Core to perform CRUD operations on a SQL Server database
-- Data for each service is stored in a instance of MongoDB or Redis.
 - Entity Framework Core in a code first approach
 - Understand and Apply the Repository Pattern
 - Implement Login and Register Functionalities
